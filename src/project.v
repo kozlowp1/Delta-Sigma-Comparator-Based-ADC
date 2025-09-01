@@ -77,11 +77,11 @@ module tt_um_ds_comp_adc (
     // To choose polarity, connect the reference and probing cap to proper inputs
     wire [15:0] filtered_b_substr = filtered_a - filtered_b;
 
-    // Instantiate CIC filter for channel A (for 12bit)
+    // Instantiate CIC filter for channel A for 11bit (out of 12 bit because it is bipolar)
     cic_filter_generic #(
         .STAGES(4),
         .WIDTH(16),
-	.DECIMATION(8)
+	.DECIMATION(4)
     ) cic_a (
         .clk(clk),
         .rst_n(rst_n),
@@ -93,7 +93,7 @@ module tt_um_ds_comp_adc (
     cic_filter_generic #(
         .STAGES(4),
         .WIDTH(16),
-	.DECIMATION(8)
+	.DECIMATION(4)
     ) cic_b (
         .clk(clk),
         .rst_n(rst_n),
@@ -133,6 +133,5 @@ pulse_triggered_serialiser serializer_ab_subtr (
 );
 
 
-    // integration of time
 
 endmodule

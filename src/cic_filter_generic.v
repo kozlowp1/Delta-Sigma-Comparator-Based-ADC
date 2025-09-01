@@ -46,12 +46,12 @@ module cic_filter_generic #(
                 decim_cnt <= 0;
 
                 // Compute comb chain using temporary variables
-                temp_comb[0] = integrator[STAGES-1] - delay[0];
-                temp_delay[0] = integrator[STAGES-1];
+                temp_comb[0] <= integrator[STAGES-1] - delay[0];
+                temp_delay[0] <= integrator[STAGES-1];
 
                 for (i = 1; i < STAGES; i = i + 1) begin
-                    temp_comb[i] = temp_comb[i-1] - delay[i];
-                    temp_delay[i] = temp_comb[i-1];
+                    temp_comb[i] <= temp_comb[i-1] - delay[i];
+                    temp_delay[i] <= temp_comb[i-1];
                 end
 
                 // Update comb and delay registers
