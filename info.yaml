@@ -5,10 +5,10 @@ project:
   discord:      "Newbie1028u90"
   description:  "Evaluating the feasibility of implementing a delta-sigma analog-to-digital conversion using two switched-capacitor lines. One line serves as a reference, while the other is intended for current measurement, such as from a photodiode. The project also explores how process, voltage, and temperature (PVT) variations affect flip-flop behavior, whether these effects can be mitigated through the reference channel, and what additional insights or phenomena may emerge from this investigation."      
   language:     "Verilog" 
-  clock_hz:     40000000  
+  clock_hz:     10000000  
 
   # How many tiles your design occupies? A single tile is about 167x108 uM.
-  tiles: "1x2"          # Valid values: 1x2 , 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+  tiles: "1x1"          # Valid values: 1x2 , 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
 
   # Your top module name must start with "tt_um_". Make it unique by including your github username:
   top_module:  "tt_um_ds_comp_adc"

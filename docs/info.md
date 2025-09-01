@@ -14,9 +14,10 @@ Start by defining the current range to be measured. For example, if the range is
 
 R1 = Vc2 / I = 0.6 / (100e-6) = 6000 Ω
 
-The current source is typically a reverse-biased photodiode, but an SMU (source measure unit) can also be used. The circuit is designed to operate in bipolar mode, meaning it can measure both positive and negative currents. 
+The current sink could a reverse-biased photodiode (as shown on the diagram below), but an SMU (source measure unit) can also be used to characterise the system. The circuit is designed to operate in bipolar mode, meaning it can measure both positive and negative currents. 
 
-To operate the system, begin by connecting the discrete components: resistors, capacitors, and a current source or sink. After setup, reset the unit.
+To begin operating the system, first connect the discrete components — resistors, capacitors, and a current source or sink. Once all components are connected, perform a system reset. After resetting, verify that both capacitor lines produce similar values (filtered_a and filtered_b) even without applying an external current source or sink. This confirms the system is functioning correctly. If the outputs are as expected, you can proceed to apply a current with your chosen polarity to begin active operation.
+
 To start data acquisition, send a pulse in the clk clock domain to uio__in[7]. This will trigger the transmission of three filtered data signals in the next clock cycle: filtered_a, filtered_b, and filtered_ab_subtr. For synchronisation, a valid_out signal is sent during the transmission of the first bit of data. This simple approach was chosen to simplify the implementation.
 
 
