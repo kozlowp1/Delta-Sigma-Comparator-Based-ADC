@@ -2,12 +2,12 @@ module pulse_triggered_serialiser (
     input  wire        clk,
     input  wire        rst_n,
     input  wire        trigger,       // External pulse to start serialization
-    input  wire [15:0] data_in,       // 16-bit data to serialize
+    input  wire [12:0] data_in,       // 16-bit data to serialize
     output wire        serial_out,    // Serialized bit output
     output wire        valid          // High during first bit
 );
 
-    reg [15:0] shift_reg;
+    reg [12:0] shift_reg;
     reg [3:0]  bit_cnt;
     reg        sending;
     reg        valid_reg;
@@ -25,10 +25,10 @@ module pulse_triggered_serialiser (
                 sending   <= 1;
                 valid_reg <= 1;
             end else if (sending) begin
-                shift_reg <= {shift_reg[14:0], 1'b0};
+                shift_reg <= {shift_reg[11:0], 1'b0};
                 bit_cnt   <= bit_cnt + 1;
                 valid_reg <= 0;
-                if (bit_cnt == 15) begin
+                if (bit_cnt == 12) begin
                     sending <= 0;
                 end
             end else begin
@@ -37,7 +37,7 @@ module pulse_triggered_serialiser (
         end
     end
 
-    assign serial_out = shift_reg[15];
+    assign serial_out = shift_reg[12];
     assign valid      = valid_reg;
 
 endmodule

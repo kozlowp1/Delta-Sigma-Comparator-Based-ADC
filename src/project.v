@@ -72,15 +72,15 @@ module tt_um_ds_comp_adc (
 
 
     // Declare wires for filtered outputs
-    wire [15:0] filtered_a;
-    wire [15:0] filtered_b;
+    wire [12:0] filtered_a;
+    wire [12:0] filtered_b;
     // To choose polarity, connect the reference and probing cap to proper inputs
-    wire [15:0] filtered_b_substr = filtered_a - filtered_b;
+    wire [12:0] filtered_b_substr = filtered_a - filtered_b;
 
     // Instantiate CIC filter for channel A for 11bit (out of 12 bit because it is bipolar)
     cic_filter_generic #(
         .STAGES(4),
-        .WIDTH(16),
+        .WIDTH(13),
 	.DECIMATION(4)
     ) cic_a (
         .clk(clk),
@@ -92,7 +92,7 @@ module tt_um_ds_comp_adc (
     // Instantiate CIC filter for channel A
     cic_filter_generic #(
         .STAGES(4),
-        .WIDTH(16),
+        .WIDTH(13),
 	.DECIMATION(4)
     ) cic_b (
         .clk(clk),
