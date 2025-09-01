@@ -1,44 +1,46 @@
 # Tiny Tapeout project information
 project:
-  title:        ""      # Project title
-  author:       ""      # Your name
-  discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  ""      # One line description of what your project does
-  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
-  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
+  title:        ""      # Delta Sigma Comparator Based ADC
+  author:       ""      # Pawel Kozlowski
+  discord:      ""      # Newbie1028u90
+  description:  ""      # Evaluating the feasibility of implementing a delta-sigma analog-to-digital conversion using two switched-capacitor lines. One line serves as a reference, while the other is intended for current measurement, such as from a photodiode. The project also explores how process, voltage, and temperature (PVT) variations affect flip-flop behavior, whether these effects can be mitigated through the reference channel, and what additional insights or phenomena may emerge from this investigation.
+  language:     "Verilog" 
+  clock_hz:     40000000  
 
   # How many tiles your design occupies? A single tile is about 167x108 uM.
-  tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+  tiles: "1x1"          # Valid values: 1x1 #, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
 
   # Your top module name must start with "tt_um_". Make it unique by including your github username:
-  top_module:  "tt_um_example"
+  top_module:  "tt_um_ds_comp_adc"
 
   # List your project's source files here.
   # Source files must be in ./src and you must list each source file separately, one per line.
   # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
   source_files:
     - "project.v"
+    - "pulse_triggered_serialiser.v"
+    - "cic_filter_generic.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
   # Inputs
-  ui[0]: ""
-  ui[1]: ""
+  ui[0]: "Capacitor a input port"
+  ui[1]: "Capacitor b input port"
   ui[2]: ""
   ui[3]: ""
   ui[4]: ""
   ui[5]: ""
   ui[6]: ""
-  ui[7]: ""
+  ui[7]: "Data triggger for adc data streaming. Asserting it causes filtered_a, filtered_b and filtered_ab_subtr to be serialised and sent."
 
   # Outputs
-  uo[0]: ""
-  uo[1]: ""
-  uo[2]: ""
-  uo[3]: ""
-  uo[4]: ""
-  uo[5]: ""
+  uo[0]: "pdm_a - pulse density modulated signal connected to capacitor a"
+  uo[1]: "pdm_b - pulse density modulated signal connected to capacitor a"
+  uo[2]: "filtered_a - the value of a line after summing"
+  uo[3]: "filtered_b - the value of b line after summing"
+  uo[4]: "filtered_ab_subtr represents the difference between the 'a' and 'b' lines after summation (i.e., a - b). The direction of current flow (or polarity), which determines how each capacitor is connected to the respective UI input, must align with this formula to prevent overflow or incorrect charge accumulation."
+  uo[5]: "valid"
   uo[6]: ""
   uo[7]: ""
 
