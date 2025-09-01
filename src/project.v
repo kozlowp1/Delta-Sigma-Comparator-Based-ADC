@@ -79,9 +79,9 @@ module tt_um_ds_comp_adc (
 
     // Instantiate CIC filter for channel A for 11bit (out of 12 bit because it is bipolar)
     cic_filter_generic #(
-        .STAGES(4),
+        .STAGES(2),
         .WIDTH(13),
-	.DECIMATION(4)
+	.DECIMATION(32)
     ) cic_a (
         .clk(clk),
         .rst_n(rst_n),
@@ -91,9 +91,9 @@ module tt_um_ds_comp_adc (
 
     // Instantiate CIC filter for channel A
     cic_filter_generic #(
-        .STAGES(4),
+        .STAGES(2),
         .WIDTH(13),
-	.DECIMATION(4)
+	.DECIMATION(32)
     ) cic_b (
         .clk(clk),
         .rst_n(rst_n),
