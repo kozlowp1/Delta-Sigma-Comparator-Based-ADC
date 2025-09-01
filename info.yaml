@@ -8,7 +8,7 @@ project:
   clock_hz:     40000000  
 
   # How many tiles your design occupies? A single tile is about 167x108 uM.
-  tiles: "1x1"          # Valid values: 1x2 #, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+  tiles: "1x2"          # Valid values: 1x2 , 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
 
   # Your top module name must start with "tt_um_". Make it unique by including your github username:
   top_module:  "tt_um_ds_comp_adc"
@@ -37,8 +37,8 @@ pinout:
   # Outputs
   uo[0]: "pdm_a - pulse density modulated signal connected to capacitor a"
   uo[1]: "pdm_b - pulse density modulated signal connected to capacitor a"
-  uo[2]: "filtered_a - the value of a line after summing"
-  uo[3]: "filtered_b - the value of b line after summing"
+  uo[2]: "filtered_a - 13 bit value of a line after summing (13 to avoid overflow)"
+  uo[3]: "filtered_b - 13 bit value of b line after summing"
   uo[4]: "filtered_ab_subtr represents the difference between the 'a' and 'b' lines after summation (i.e., a - b). The direction of current flow (or polarity), which determines how each capacitor is connected to the respective UI input, must align with this formula to prevent overflow or incorrect charge accumulation."
   uo[5]: "filtered_a valid signal saying that from this bit on the user can expect the integrated value from the first capacitor line"
   uo[6]: "filtered_b valid signal saying that from this bit on the user can expect the integrated value from the second capacitor line"

@@ -6,6 +6,8 @@ Of course, in practice, flip-flops and capacitors are never perfectly matched. T
 
 Implementing this on-chip (rather than on an FPGA) offers better control over parasitics at the silicon level, which could improve overall conversion accuracy.
 
+The data output is 13 bits wide, but only 12 bits are effectively used. This is to account for potential overflow, especially in cases where simulation might not catch it. Additionally, since the system operates in bipolar mode, one more bit is reserved to represent the sign. As a result, the effective resolution of the ADC is 11 bits.
+
 ## How to test
 
 Start by defining the current range to be measured. For example, if the range is 0–100 µA, the baseline of the delta-sigma oscillation should be around 0.6 V (half of a 1.2 V supply). This gives:
