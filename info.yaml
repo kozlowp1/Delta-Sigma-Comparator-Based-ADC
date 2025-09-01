@@ -40,9 +40,9 @@ pinout:
   uo[2]: "filtered_a - the value of a line after summing"
   uo[3]: "filtered_b - the value of b line after summing"
   uo[4]: "filtered_ab_subtr represents the difference between the 'a' and 'b' lines after summation (i.e., a - b). The direction of current flow (or polarity), which determines how each capacitor is connected to the respective UI input, must align with this formula to prevent overflow or incorrect charge accumulation."
-  uo[5]: "valid"
-  uo[6]: ""
-  uo[7]: ""
+  uo[5]: "filtered_a valid signal saying that from this bit on the user can expect the integrated value from the first capacitor line"
+  uo[6]: "filtered_b valid signal saying that from this bit on the user can expect the integrated value from the second capacitor line"
+  uo[7]: "filtered_ab_subtr valid signal saying that from this bit on one can expect the difference between the vaules (effectively the ADC code)"
 
   # Bidirectional pins
   uio[0]: ""

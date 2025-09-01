@@ -31,9 +31,9 @@ module tt_um_ds_comp_adc (
   //uo_out[2] - filtered_a
   //uo_out[3] - filtered_b
   //uo_out[4] - filtered_ab_subtr
-  //uo_out[5] - valid out
-  //uo_out[6] - 
-  //uo_out[7] - 
+  //uo_out[5] - valid 1 (filtered_a) 
+  //uo_out[6] - valid 2 (filtered_b)
+  //uo_out[7] - valid 3 (filtered_ab_subtr)
 
   // All output pins must be assigned. If not used, assign to 0.
   //assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
@@ -42,7 +42,7 @@ module tt_um_ds_comp_adc (
 
 
   // List all unused inputs to prevent warnings
-  wire _unused = &{ena,uio_oe,uio_out, 1'b0};
+  wire _unused = &{ena,uio_oe,uio_in,uio_out,ui_in[6:2],uo_out[7:6], 1'b0};
 
     // -- DS comparator based ADC
     // Internal signals
@@ -119,7 +119,7 @@ pulse_triggered_serialiser serializer_b (
     .trigger(ui_in[7]),       // External pulse to start serialization
     .data_in(filtered_b),     // 16-bit filtered data
     .serial_out(uo_out[3]),   // Serialized bit output
-    .valid(uo_out[5])         // Valid signal during first bit
+    .valid(uo_out[6])         // Valid signal during first bit
 );
 
 
@@ -129,7 +129,7 @@ pulse_triggered_serialiser serializer_ab_subtr (
     .trigger(ui_in[7]),       // External pulse to start serialization
     .data_in(filtered_b_substr),     // 16-bit filtered data
     .serial_out(uo_out[4]),   // Serialized bit output
-    .valid(uo_out[5])         // Valid signal during first bit
+    .valid(uo_out[7])         // Valid signal during first bit
 );
 
 

@@ -13,7 +13,6 @@ module cic_filter_generic #(
     reg [WIDTH-1:0] integrator [0:STAGES-1];
 
     // Comb stages
-    reg [WIDTH-1:0] comb [0:STAGES-1];
     reg [WIDTH-1:0] delay [0:STAGES-1];
 
     // Temporary variables for comb chain
@@ -29,7 +28,6 @@ module cic_filter_generic #(
         if (!rst_n) begin
             for (i = 0; i < STAGES; i = i + 1) begin
                 integrator[i] <= 0;
-                comb[i] <= 0;
                 delay[i] <= 0;
                 temp_comb[i] <= 0;
                 temp_delay[i] <= 0;
@@ -58,7 +56,6 @@ module cic_filter_generic #(
 
                 // Update comb and delay registers
                 for (i = 0; i < STAGES; i = i + 1) begin
-                    comb[i] <= temp_comb[i];
                     delay[i] <= temp_delay[i];
                 end
 
