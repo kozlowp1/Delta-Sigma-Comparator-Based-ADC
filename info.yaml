@@ -1,9 +1,9 @@
 # Tiny Tapeout project information
 project:
-  title:        ""      # Delta Sigma Comparator Based ADC
-  author:       ""      # Pawel Kozlowski
-  discord:      ""      # Newbie1028u90
-  description:  ""      # Evaluating the feasibility of implementing a delta-sigma analog-to-digital conversion using two switched-capacitor lines. One line serves as a reference, while the other is intended for current measurement, such as from a photodiode. The project also explores how process, voltage, and temperature (PVT) variations affect flip-flop behavior, whether these effects can be mitigated through the reference channel, and what additional insights or phenomena may emerge from this investigation.
+  title:        "Delta Sigma Comparator Based ADC"
+  author:       "Pawel Kozlowski"
+  discord:      "Newbie1028u90"
+  description:  "Evaluating the feasibility of implementing a delta-sigma analog-to-digital conversion using two switched-capacitor lines. One line serves as a reference, while the other is intended for current measurement, such as from a photodiode. The project also explores how process, voltage, and temperature (PVT) variations affect flip-flop behavior, whether these effects can be mitigated through the reference channel, and what additional insights or phenomena may emerge from this investigation."      
   language:     "Verilog" 
   clock_hz:     40000000  
 
